@@ -10,7 +10,7 @@ def apply_adapter(labels: torch.Tensor, adapter: nn.Module) -> torch.Tensor:
     """
     Labels of shape [batch_size, num_experts, num_classes, height, width].
     """
-    print(f"Applying adapter: {labels.shape}")
+    # print(f"Applying adapter: {labels.shape}")
     num_experts, num_classes = labels.shape[1], labels.shape[2]
     expert_labels: list[torch.Tensor] = []
     for expert in range(num_experts):
@@ -101,19 +101,3 @@ def load_adapter(adapter_name: str) -> nn.Module:
     if adapter_name not in adapter_dict.keys():
         raise ValueError(f"{adapter_name} is not a supported adapter type.")
     return adapter_dict[adapter_name]()
-
-
-def test() -> None:
-    """
-    Run a basic adapter test.
-    """
-    label = torch.tensor(list(range(900))).reshape((2, 6, 3, 5, 5)).float()
-    print(label.shape)
-    adapter = InvertedGaussAdapter()
-    svls = apply_adapter(label, adapter)
-    print(svls.shape)
-    print(svls[0, 0])
-
-
-if __name__ == "__main__":
-    test()
