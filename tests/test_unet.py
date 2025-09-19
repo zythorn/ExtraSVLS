@@ -1,3 +1,4 @@
+import pytest  # noqa: F401
 import torch
 
 from extrasvls.models.unet import UNet

@@ -178,14 +178,3 @@ class NAFBaseline(nn.Module):  # type: ignore[misc]
 
         x = self.out_conv(x)
         return x
-
-
-def test() -> None:
-    image = torch.ones((8, 3, 256, 512))
-    shape = torch.tensor([256, 512])
-    model = NAFBaseline(3, 16, 3, [[4, 4, 4, 4], [4], [4, 4, 4, 4]], shape)
-    print(model(image).shape)
-
-
-if __name__ == "__main__":
-    test()
