@@ -4,7 +4,7 @@ import torch
 from extrasvls.models.nafbaseline import NAFBaseline
 
 
-def test_unet_shape() -> None:
+def test_nafbase_shape() -> None:
     sample = torch.randn((4, 3, 256, 256))
     nafb = NAFBaseline(3, 16, 3, [[4, 4, 4, 4], [4], [4, 4, 4, 4]], torch.tensor([256, 256]))
     out = nafb(sample)
